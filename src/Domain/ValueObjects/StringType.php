@@ -2,18 +2,22 @@
 
 namespace App\Domain\ValueObjects;
 
-class Title
+class StringType
 {
     private $value;
 
     public function __construct($value)
     {
+        if (!is_string($value)) {
+            throw new \InvalidArgumentException('Value should be string.');
+        }
+
         $this->value = $value;
     }
 
-    public function __toString()
+    public function getValue()
     {
-        return (string) $this->value;
+        return $this->value;
     }
 
     public function equal($value)
