@@ -40,26 +40,41 @@ class User
         $this->email = $email;
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id->getValue();
     }
 
+    /**
+     * @return string
+     */
     public function getFirstName()
     {
         return $this->firstName->getValue();
     }
 
+    /**
+     * @return string
+     */
     public function getLastName()
     {
         return $this->lastName->getValue();
     }
 
+    /**
+     * @return int
+     */
     public function getAge()
     {
         return $this->age->getValue();
     }
 
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email->getValue();
