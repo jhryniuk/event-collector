@@ -2,7 +2,6 @@
 
 namespace App\Domain\ValueObjects;
 
-
 class IntNumber
 {
     private $value;
