@@ -2,7 +2,7 @@
 
 namespace App\Domain;
 
-use App\Domain\ValueObjects\IntNumber;
+use App\Domain\ValueObjects\StringType;
 
 /**
  * Interface UserRegistry
@@ -23,8 +23,8 @@ interface UserRegistry
     public function remove(User $user);
 
     /**
-     * @param IntNumber $user
-     * @return null|User[]
+     * @param StringType $email
+     * @return null|User
      */
-    public function find(IntNumber $user);
+    public function findByEmail(StringType $email);
 }

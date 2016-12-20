@@ -4,26 +4,63 @@ namespace App\Application\UseCase\CreateUser;
 
 use App\Application\Command;
 use App\Application\CommandHandler;
+use App\Application\Factory\UserFactory;
 use App\Application\UseCase\ResponderAware;
 use App\Application\UseCase\ResponderAwareBehavior;
+use App\Domain\User;
 use App\Domain\UserRegistry;
 
 class CreateUserHandler implements CommandHandler, ResponderAware
 {
     use ResponderAwareBehavior;
 
+    private $userFactory;
     private $userRegistry;
 
-    public function __construct(UserRegistry $registry)
+    public function __construct(UserFactory $userFactory, UserRegistry $userRegistry)
     {
-        $this->userRegistry = $registry;
+        $this->userFactory = $userFactory;
+        $this->userRegistry = $userRegistry;
     }
 
     /**
+     * @inheritdoc
      * @param CreateUserCommand $command
      */
     public function handle(Command $command)
     {
-        $user = $this->userRegistry->find($command->id);
+        $user = $this->userFactory->createUser(
+            $command->id,
+            $command->firstName,
+            $command->lastName,
+            $command->age,
+            $command->email
+        );
+
+        if (null != $this->userRegistry->findByEmail($command->email)) {
+            $this->userNotCreated($user);
+        } else {
+            $this->userCreated($user);
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function userCreated(User $user)
+    {
+        foreach ($this->responders as $responder) {
+            $responder->userCreated($user);
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function userNotCreated(User $user)
+    {
+        foreach ($this->responders as $responder) {
+            $responder->userNotCreated($user);
+        }
     }
 }
