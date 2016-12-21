@@ -17,6 +17,8 @@ class User
     private $age;
     /** @var StringType */
     private $email;
+    /** @var  Event */
+    protected $events;
 
     /**
      * User constructor.
