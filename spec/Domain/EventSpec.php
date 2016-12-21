@@ -3,6 +3,7 @@
 namespace spec\App\Domain;
 
 use App\Domain\Event;
+use App\Domain\User;
 use App\Domain\ValueObjects\DateTimeType;
 use App\Domain\ValueObjects\IntNumber;
 use App\Domain\ValueObjects\StringType;
@@ -13,6 +14,7 @@ class EventSpec extends ObjectBehavior
 {
     private $id;
     private $title;
+    private $user;
     private $description;
     private $date_start;
     private $date_end;
@@ -22,15 +24,17 @@ class EventSpec extends ObjectBehavior
         $this->shouldHaveType(Event::class);
     }
 
-    public function let()
+    public function let(User $user)
     {
         $this->id = new IntNumber(1);
         $this->title = new StringType('Title');
+        $this->user = $user;
         $this->description = new StringType('Description of Event');
         $this->date_start = new DateTimeType(new \DateTime('+1 day'));
         $this->date_end = new DateTimeType(new \DateTime('+7 day'));
         $this->beConstructedWith(
             $this->id,
+            $this->user,
             $this->title,
             $this->description,
             $this->date_start,
@@ -46,6 +50,11 @@ class EventSpec extends ObjectBehavior
     public function it_should_has_getTitle()
     {
         $this->getTitle()->shouldReturn('Title');
+    }
+
+    public function it_should_has_getUser()
+    {
+        $this->getUser()->shouldReturn($this->user);
     }
 
     public function it_should_has_getDescription()

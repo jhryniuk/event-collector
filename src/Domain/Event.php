@@ -11,6 +11,7 @@ class Event
 
     private $id;
     private $title;
+    private $user;
     private $description;
     private $date_start;
     private $date_end;
@@ -18,6 +19,7 @@ class Event
     /**
      * Event constructor.
      * @param IntNumber $id
+     * @param User $user
      * @param StringType $title
      * @param StringType $description
      * @param DateTimeType $date_start
@@ -25,6 +27,7 @@ class Event
      */
     public function __construct(
         IntNumber $id,
+        User $user,
         StringType $title,
         StringType $description,
         DateTimeType $date_start,
@@ -32,6 +35,7 @@ class Event
     ) {
         $this->id = $id;
         $this->title = $title;
+        $this->user = $user;
         $this->description = $description;
         $this->date_start = $date_start;
         $this->date_end = $date_end;
@@ -75,5 +79,10 @@ class Event
     public function getDateEnd()
     {
         return $this->date_end->getValue();
+    }
+
+    public function getUser()
+    {
+        return $this->user;
     }
 }
