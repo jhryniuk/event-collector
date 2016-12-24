@@ -25,7 +25,7 @@ interface UserRegistry
 
     /**
      * @param StringType $email
-     * @return null|User
+     * @return User|null
      */
     public function findByEmail(StringType $email);
 

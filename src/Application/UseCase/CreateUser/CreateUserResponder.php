@@ -2,7 +2,7 @@
 
 namespace App\Application\UseCase\CreateUser;
 
-use App\Application\Responder;
+use App\Application\UseCase\Responder;
 use App\Domain\User;
 
 interface CreateUserResponder extends Responder

@@ -45,7 +45,7 @@ class CreateEventHandler implements CommandHandler, Responder
     /**
      * @inheritdoc
      */
-    public function eventCreated(Event $event)
+    private function eventCreated(Event $event)
     {
         foreach ($this->responders as $responder) {
             $responder->eventCreated($event);
@@ -55,7 +55,7 @@ class CreateEventHandler implements CommandHandler, Responder
     /**
      * @inheritdoc
      */
-    public function eventAlreadyExist(Event $event)
+    private function eventAlreadyExist(Event $event)
     {
         foreach ($this->responders as $responder) {
             $responder->eventAlreadyExist($event);

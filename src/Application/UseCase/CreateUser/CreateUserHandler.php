@@ -37,10 +37,11 @@ class CreateUserHandler implements CommandHandler, ResponderAware
             $command->email
         );
 
-        if (null != $this->userRegistry->findByEmail($command->email)) {
-            $this->userNotCreated($user);
-        } else {
+        $checkedUser = $this->userRegistry->findByEmail($command->email);
+        if (!($checkedUser instanceof User)) {
             $this->userCreated($user);
+        } else {
+            $this->userNotCreated($user);
         }
     }
 
