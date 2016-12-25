@@ -3,7 +3,7 @@
 use App\Application\CommandBus as BaseCommandBus;
 use League\Tactician\CommandBus;
 
-class Tactition implements BaseCommandBus
+class Tactician implements BaseCommandBus
 {
     /** @var  CommandBus */
     private $commandBus;
