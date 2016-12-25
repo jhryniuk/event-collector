@@ -7,7 +7,8 @@
     "squizlabs/php_codesniffer": "2.7.*"
   },
   "require": {
-    "ramsey/uuid": "3.5.*"
+    "ramsey/uuid": "3.5.*",
+    "league/tactician": "1.0.*"
   },
   "config": {
     "bin-dir": "bin"
