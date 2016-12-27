@@ -31,8 +31,14 @@ class CreateEventHandler implements CommandHandler, Responder
     public function handle(Command $command)
     {
         $user = $this->userRegistry->findById($command->userId);
-        $event = $this->eventFactory->createEvent($command->id, $command->userId, $command->title,
-            $command->description, $command->date_start, $command->date_end);
+        $event = $this->eventFactory->createEvent(
+            $command->id,
+            $command->userId,
+            $command->title,
+            $command->description,
+            $command->date_start,
+            $command->date_end
+        );
 
         try {
             $user->addEvent($event);

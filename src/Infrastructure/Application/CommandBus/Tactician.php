@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Application\CommandBus;
+
 use App\Application\CommandBus as BaseCommandBus;
 use League\Tactician\CommandBus;
 

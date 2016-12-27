@@ -106,11 +106,16 @@ class User
     }
 
     /**
-     * @param Event $event
+     * @param IntNumber $eventId
+     * @throws LogicException
      */
-    public function removeEvent(Event $event)
+    public function removeEvent(IntNumber $eventId)
     {
-        unset($this->events[$event->getId()]);
+        if ($this->getEventById($eventId)) {
+            throw new LogicException("Event doesn't exist.");
+        }
+
+        unset($this->events[$eventId->getValue()]);
     }
 
     /**
