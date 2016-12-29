@@ -6,5 +6,6 @@
 /bin/phpcs
 /bin/phpspec
 /bin/security-checker
+!/bin/console
 /var/
 !var/.gitkeep
