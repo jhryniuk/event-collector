@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="{{ asset('bundles/users/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/users/css/bootstrap-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/users/css/front.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/js/fancybox/source/jquery.fancybox.css') }}">
+    <script type="text/javascript" src="{{ asset('bundles/users/js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/fancybox/lib/jquery-1.9.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/cycle2.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/fancybox/source/jquery.fancybox.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('bundles/app/js/fancybox/source/helpers/jquery.fancybox-buttons.js') }}"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.fancybox')
+                    .attr('rel', 'gallery')
+                    .fancybox({
+                fitToView: true,
+                openEffect: 'elastic',
+                closeEffect: 'elastic',
+                maxWidth: "70%",
+                scrolling: "no",
+                helpers: {
+                    overlay: {
+                        locked: false
+                    }
+                }
+            });
+        });
+
+    </script>
+    <title>{% block title %}Sedyko!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <img src="{{ asset('bundles/app/images/logo.jpg') }}">
+        <div class="menu">
+            <ul>
+                <li><a href="{{ path('front_index', []) }}"
+                       class="{% if app.request.get('_route') == 'front_index' %} active {% endif %}">
+                        <div></div>
+                        <span>STRONA GŁÓWNA</span></a></li>
+                <li><a href="{{ path('front_info', []) }}"
+                       class="{% if app.request.get('_route') == 'front_info' %} active {% endif %}">
+                        <div></div>
+                        <span>INFORMACJE O FIRMIE</span></a></li>
+                <li><a href="{{ path('front_flatQuestion', []) }}"
+                       class="{% if app.request.get('_route') == 'front_flatQuestion' %} active {% endif %}">
+                        <div></div>
+                        <span>ZAPYTAJ O MIESZKANIE</span></a></li>
+                <li><a href="{{ path('front_gallery', []) }}"
+                       class="{% if app.request.get('_route') == 'front_gallery' %} active {% endif %}">
+                        <div></div>
+                        <span>GALERIA</span></a></li>
+                <li><a href="{{ path('front_contact', []) }}"
+                       class="{% if app.request.get('_route') == 'front_contact' %} active {% endif %}">
+                        <div></div>
+                        <span>KONTAKT</span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="cycle-slideshow" style="z-index: -10; top: 0px;"
+            data-cycle-time=3000>
+        <img style="width: 1200px;" src="{{ asset('bundles/app/slider/first.jpg') }}">
+        <img style="width: 1200px;" src="{{ asset('bundles/app/slider/second.jpg') }}">
+        <img style="width: 1200px;" src="{{ asset('bundles/app/slider/third.jpg') }}">
+    </div>
+    <div class="main-contact">
+        <div class="headline">SKONTAKTUJ SIĘ Z NAMI</div>
+        <div>
+            {% if settings['komorka1']['content'] is defined %}
+                {{ settings['komorka1']['content'] }}
+            {% endif %}
+        </div>
+        <div>
+            {% if settings['komorka2']['content'] is defined %}
+                {{ settings['komorka2']['content'] }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header1">{{ 'ZAPRASZAMY SERDECZNIE - OSTATNIE WOLNE MIESZKANIA CZEKAJĄ!' }}
+            <div class="header2">
+                Nowe mieszkania w Legnicy na Osiedlu Piekary B w otoczeniu zabudowy wielo i jednorodzinnej.
+            </div>
+        </div>
+        <div class="triangle-yellow"></div>
+        {% block body %}
+        {% endblock %}
+        <div class="footer">
+            <div class="footer-logo"><img src="{{ asset('bundles/app/images/footer-logo.png') }}"></div>
+            <div class="footer-address">
+                <div class="address">
+                    <div class="img">
+                        <img src="{{ asset('bundles/app/images/house.png') }}">
+                    </div>
+                    <div class="description">
+                        <div>
+                            {% if settings['nazwa-firmy']['content'] is defined %}
+                                {{ settings['nazwa-firmy']['content'] }}
+                            {% endif %}
+                        </div>
+                        <div>
+                            {% if settings['adres']['content'] is defined %}
+                                {{ settings['adres']['content'] }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="phone">
+                    <div class="img">
+                        <img src="{{ asset('bundles/app/images/phone.png') }}">
+                    </div>
+                    <div class="description">
+                        <div>
+                            {% if settings['komorka1']['content'] is defined %}
+                                {{ settings['komorka1']['content'] }}
+                            {% endif %}
+                        </div>
+                        <div>
+                            {% if settings['komorka2']['content'] is defined %}
+                                {{ settings['komorka2']['content'] }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="mail">
+                    <div class="img">
+                        <img src="{{ asset('bundles/app/images/mail.png') }}">
+                    </div>
+                    <div class="description" style="margin-top: 7px;">
+                        {{ settings['bartosz-szymczyk-1']['content'] }}
+                    </div>
+                </div>
+            </div>
+            <div class="footer-flats">
+                <h4>MIESZKANIA</h4>
+                <div class="flats">
+                    <div>
+                        <div class="arrow"><img src="{{ asset('bundles/app/images/arrow.png') }}"></div>
+                        <div class="description">STARANNIE ZAPROJEKTOWANE OSIEDLE</div>
+                        <div class="underline"></div>
+                    </div>
+                    <div>
+                        <div class="arrow"><img src="{{ asset('bundles/app/images/arrow.png') }}"></div>
+                        <div class="description">BUDYNKI 3 PIĘTROWE</div>
+                        <div class="underline"></div>
+                    </div>
+                    <div>
+                        <div class="arrow"><img src="{{ asset('bundles/app/images/arrow.png') }}"></div>
+                        <div class="description">MIESZKANIA OD OKOŁO 40 DO 72M2</div>
+                        <div class="underline"></div>
+                    </div>
+                    <div>
+                        <div class="arrow"><img src="{{ asset('bundles/app/images/arrow.png') }}"></div>
+                        <div class="description">KAŻDE MIESZKANIE POSIADA BALKON</div>
+                        <div class="underline"></div>
+                    </div>
+                    <div>
+                        <div class="arrow"><img src="{{ asset('bundles/app/images/arrow.png') }}"></div>
+                        <div class="description">FUNKCJONALNE ROZKŁADY WNĘTRZ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

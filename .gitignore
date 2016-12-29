@@ -1,2 +1,10 @@
 /vendor
-/bin
+/bin/doctrine
+/bin/doctrine.php
+/bin/doctrine-dbal
+/bin/phpcbf
+/bin/phpcs
+/bin/phpspec
+/bin/security-checker
+/var/
+!var/.gitkeep
