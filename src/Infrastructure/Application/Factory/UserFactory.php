@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Application\Factory;
+namespace App\Infrastructure\Application\Factory;
 
 use App\Domain\User;
 use App\Domain\ValueObjects\IntNumber;
 use App\Domain\ValueObjects\StringType;
 
-interface UserFactory
+class UserFactory implements \App\Application\Factory\UserFactory
 {
+
     /**
      * @param IntNumber $id
      * @param StringType $firstName
@@ -22,5 +23,9 @@ interface UserFactory
         StringType $lastName,
         IntNumber $age,
         StringType $email
-    );
+    ) {
+        $user = new User($id, $firstName, $lastName, $age, $email);
+
+        return $user;
+    }
 }

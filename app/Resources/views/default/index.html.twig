@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    test
+    {% dump(users) %}
+    {% dump(data) %}
+    {{ data.1.title }}
 {% endblock %}

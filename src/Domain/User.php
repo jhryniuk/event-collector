@@ -90,7 +90,7 @@ class User
      */
     public function addEvent(Event $event)
     {
-        if ($this->eventTitleExists($event->getTitle())) {
+        if ($this->eventTitleExists(new StringType($event->getTitle()))) {
             throw new LogicException("Event title {$event->getTitle()} already exist.");
         }
 

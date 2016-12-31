@@ -58,7 +58,7 @@ class CreateEventHandlerSpec extends ObjectBehavior
         $user->addEvent(Argument::type(Event::class))->shouldBeCalled();
         $eventFactory->createEvent(
             $eventId,
-            $userId,
+            $user,
             $title,
             $description,
             $date_start,
@@ -92,7 +92,7 @@ class CreateEventHandlerSpec extends ObjectBehavior
         $user->addEvent(Argument::type(Event::class))->shouldBeCalled();
         $eventFactory->createEvent(
             $eventId,
-            $userId,
+            $user,
             $title,
             $description,
             $date_start,

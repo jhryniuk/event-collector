@@ -33,7 +33,7 @@ class CreateEventHandler implements CommandHandler, Responder
         $user = $this->userRegistry->findById($command->userId);
         $event = $this->eventFactory->createEvent(
             $command->id,
-            $command->userId,
+            $user,
             $command->title,
             $command->description,
             $command->date_start,

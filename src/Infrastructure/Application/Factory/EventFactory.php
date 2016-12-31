@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Factory;
+namespace App\Infrastructure\Application\Factory;
 
 use App\Domain\Event;
 use App\Domain\User;
@@ -8,8 +8,9 @@ use App\Domain\ValueObjects\DateTimeType;
 use App\Domain\ValueObjects\IntNumber;
 use App\Domain\ValueObjects\StringType;
 
-interface EventFactory
+class EventFactory implements \App\Application\Factory\EventFactory
 {
+
     /**
      * @param IntNumber $id
      * @param User $user
@@ -26,5 +27,9 @@ interface EventFactory
         StringType $description,
         DateTimeType $date_start,
         DateTimeType $date_end
-    );
+    ) {
+        $event = new Event($id, $user, $title, $description, $date_start, $date_end);
+
+        return $event;
+    }
 }
