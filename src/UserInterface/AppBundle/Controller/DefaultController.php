@@ -22,17 +22,26 @@ class DefaultController extends Controller
         $userFactory = $this->get('userFactory');
         $eventFactory = $this->get('eventFactory');
 
-        $user = new CreateUserCommand(new IntNumber(1), new StringType('Jan'), new StringType('Hryniuk'),
+        $user = new CreateUserCommand(
+            new IntNumber(1),
+            new StringType('Jan'),
+            new StringType('Hryniuk'),
             new IntNumber(32),
-            new StringType('jasiekhryniuk@gmail.com'));
+            new StringType('jasiekhryniuk@gmail.com')
+        );
 
 
         $handledUser = new CreateUserHandler($userFactory, $userRegistry);
         $handledUser->handle($user);
 
-        $event = new CreateEventCommand(new IntNumber(1), new StringType('Event title'), new IntNumber(1),
-            new StringType('Event description'), new DateTimeType(new \DateTime('-1 day')),
-            new DateTimeType(new \DateTime('+7 day')));
+        $event = new CreateEventCommand(
+            new IntNumber(1),
+            new StringType('Event title'),
+            new IntNumber(1),
+            new StringType('Event description'),
+            new DateTimeType(new \DateTime('-1 day')),
+            new DateTimeType(new \DateTime('+7 day'))
+        );
 
         $handledEvent = new CreateEventHandler($userRegistry, $eventFactory);
         $handledEvent->handle($event);
@@ -48,7 +57,10 @@ class DefaultController extends Controller
             var_dump($form->getData());
         }
 
-        return $this->render('default/index.html.twig', ['users' => $userRegistry, 'data' => $formattedEvents->getResult(),
-        'form' => $form->createView()]);
+        return $this->render('default/index.html.twig', [
+            'users' => $userRegistry,
+            'data' => $formattedEvents->getResult(),
+            'form' => $form->createView()
+        ]);
     }
 }

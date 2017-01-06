@@ -2,7 +2,7 @@
 
 namespace App\UserInterface\AppBundle\Formatters;
 
-abstract class AbstractJsonFormatter implements  \JsonSerializable
+abstract class AbstractJsonFormatter implements \JsonSerializable
 {
-    abstract public function jsonSerialize ();
+    abstract public function jsonSerialize();
 }
