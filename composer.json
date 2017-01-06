@@ -1,5 +1,5 @@
 {
-  "name": "jhkr/onion",
+  "name": "jhkr/event-collector",
   "description": "Elementary onion architecture project.",
   "license": "MIT",
   "require-dev": {
