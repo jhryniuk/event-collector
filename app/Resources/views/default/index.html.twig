@@ -2,6 +2,12 @@
 
 {% block body %}
     {% dump(users) %}
-    {% dump(data) %}
-    {{ data.1.title }}
+    {%  dump(data) %}
+    {{ data.0.title }}
+    {#{{ form_start(form) }}#}
+        {#{{ form_label(form.firstname) }}#}
+        {#{{ form_widget(form.firstname) }}#}
+        {#{{ form_widget(form.save) }}#}
+    {#{{ form_end(form) }}#}
+    {{ form(form) }}
 {% endblock %}

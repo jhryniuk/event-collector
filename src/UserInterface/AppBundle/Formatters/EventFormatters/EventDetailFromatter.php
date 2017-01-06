@@ -5,7 +5,7 @@ namespace App\UserInterface\AppBundle\Formatters\EventFormatters;
 use App\Domain\Event;
 use App\UserInterface\AppBundle\Formatters\AbstractJsonFormatter;
 
-class EventLightFromatter extends AbstractJsonFormatter
+class EventDetailFromatter extends AbstractJsonFormatter
 {
     /** @var Event  */
     private $event;
@@ -20,6 +20,7 @@ class EventLightFromatter extends AbstractJsonFormatter
         return [
             'id' => $this->event->getId(),
             'title' => $this->event->getTitle(),
+            'description' => $this->event->getDescription(),
             'date_start' => $this->event->getDateStart(),
             'date_end' => $this->event->getDateEnd()
         ];

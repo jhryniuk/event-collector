@@ -2,39 +2,37 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-#    - { resource: "@DashboardBundle/Resources/config/services.yml" }
-#    - { resource: "@ApiBundle/Resources/config/services.yml" }
 
 parameters:
-    locale: pl
+#    locale: pl
 
 framework:
     #esi:             ~
-    translator:      { fallbacks: ["%locale%"] }
+#    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-#    form:            ~
-#    csrf_protection: ~
-#    validation:      { enable_annotations: true }
-#    templating:
-#        engines: ['twig']
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
 #    default_locale:  "%locale%"
-#    trusted_hosts:   ~
-#    trusted_proxies: ~
-#    session:
-#        handler_id:  session.handler.native_file
-#        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
-#    fragments:       ~
-#    http_method_override: true
-#    assets: ~
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
 
-#twig:
-#    debug:            "%kernel.debug%"
-#    strict_variables: "%kernel.debug%"
-#    form_themes:
-#      - 'bootstrap_3_layout.html.twig'
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+      - 'bootstrap_3_layout.html.twig'
 
 doctrine:
     dbal:
@@ -48,54 +46,3 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
-
-#    orm:
-#        auto_generate_proxy_classes: "%kernel.debug%"
-#        naming_strategy: doctrine.orm.naming_strategy.underscore
-#        auto_mapping: true
-
-#swiftmailer:
-#    disable_delivery: true
-#    transport: "%mailer_transport%"
-#    host:      "%mailer_host%"
-#    username:  "%mailer_user%"
-#    password:  "%mailer_password%"
-#    spool:     { type: memory }
-#
-#fos_user:
-#    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-#    firewall_name: main
-#    user_class: UsersBundle\Entity\Users
-#    registration:
-#        form:
-#            type: UsersBundle\Form\RegistrationFormType
-
-#stof_doctrine_extensions:
-#    default_locale: "%locale%"
-#    translation_fallback: true
-#    orm:
-#        default:
-#            sluggable: true
-#
-#knp_paginator:
-#    page_range: 5
-#    default_options:
-#        page_name: page
-#        sort_field_name: sort
-#        sort_direction_name: direction
-#        distinct: true
-#    template:
-#        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig
-#        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig
-#
-#sensio_framework_extra:
-#    view: { annotations: true }
-#    router: { annotations: true }
-#
-#fos_rest:
-#    format_listener:
-#        enabled: false
-#    view:
-#        view_response_listener: true
-#
-#nelmio_api_doc: ~

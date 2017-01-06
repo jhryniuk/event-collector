@@ -1,0 +1,8 @@
+parameters:
+
+services:
+  userFactory:
+    class: App\Infrastructure\Application\Factory\UserFactory
+
+  userRegistry:
+    class: App\Infrastructure\Domain\UserRegistry

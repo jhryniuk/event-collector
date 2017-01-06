@@ -9,10 +9,8 @@ use App\Application\UseCase\CreateUser\CreateUserHandler;
 use App\Domain\ValueObjects\DateTimeType;
 use App\Domain\ValueObjects\IntNumber;
 use App\Domain\ValueObjects\StringType;
-use App\Infrastructure\Application\Factory\EventFactory;
-use App\Infrastructure\Application\Factory\UserFactory;
-use App\Infrastructure\Domain\UserRegistry;
-use App\UserInterface\AppBundle\Formatters\EventFormatters\EventLightFromatter;
+use App\UserInterface\AppBundle\Form\UserRegisterType;
+use App\UserInterface\AppBundle\Formatters\EventFormatters\EventCollectionFormatter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,9 +18,9 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $userRegistry = new UserRegistry();
-        $userFactory = new UserFactory();
-        $eventFactory = new EventFactory();
+        $userRegistry = $this->get('userRegistry');
+        $userFactory = $this->get('userFactory');
+        $eventFactory = $this->get('eventFactory');
 
         $user = new CreateUserCommand(new IntNumber(1), new StringType('Jan'), new StringType('Hryniuk'),
             new IntNumber(32),
@@ -41,8 +39,16 @@ class DefaultController extends Controller
 
         $user = $userRegistry->findByEmail(new StringType('jasiekhryniuk@gmail.com'));
         $events = $user->getEvents();
-        $test = 'test value';
 
-        return $this->render('default/index.html.twig', ['users' => $userRegistry, 'data' => $events, 'test' => $test]);
+        $formattedEvents = new EventCollectionFormatter($events, EventCollectionFormatter::LIGHT);
+
+        $form = $this->createForm(UserRegisterType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            var_dump($form->getData());
+        }
+
+        return $this->render('default/index.html.twig', ['users' => $userRegistry, 'data' => $formattedEvents->getResult(),
+        'form' => $form->createView()]);
     }
 }
