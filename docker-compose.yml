@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  data:
+    image: busybox
+    volumes:
+     - ".:/var/www/onion"
+
+  php:
+    build: docker/php7
+    expose:
+      - 9000
+    volumes_from:
+      - data
+    links:
+      - mariadb
+
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - "3600:3600"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_DATABASE=symfony"
+      - "MYSQL_USER=docker"
+      - "MYSQL_PASSWORD=docker"
+    volumes:
+      - "./data:/var/lib/mysql"
+
+  nginx:
+    build: docker/nginx
+    volumes_from:
+      - data
+    links:
+      - php
+    ports:
+      - "80:80"
+      - "443:443"

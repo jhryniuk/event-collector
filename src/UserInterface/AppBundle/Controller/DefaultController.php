@@ -26,7 +26,7 @@ class DefaultController extends Controller
             new IntNumber(1),
             new StringType('Jan'),
             new StringType('Hryniuk'),
-            new IntNumber(32),
+            new IntNumber(33),
             new StringType('jasiekhryniuk@gmail.com')
         );
 
@@ -34,10 +34,11 @@ class DefaultController extends Controller
         $handledUser = new CreateUserHandler($userFactory, $userRegistry);
         $handledUser->handle($user);
 
+        $user = $userRegistry->findByEmail(new StringType('jasiekhryniuk@gmail.com'));
         $event = new CreateEventCommand(
             new IntNumber(1),
             new StringType('Event title'),
-            new IntNumber(1),
+            new IntNumber($user->getId()),
             new StringType('Event description'),
             new DateTimeType(new \DateTime('-1 day')),
             new DateTimeType(new \DateTime('+7 day'))
@@ -46,9 +47,7 @@ class DefaultController extends Controller
         $handledEvent = new CreateEventHandler($userRegistry, $eventFactory);
         $handledEvent->handle($event);
 
-        $user = $userRegistry->findByEmail(new StringType('jasiekhryniuk@gmail.com'));
         $events = $user->getEvents();
-
         $formattedEvents = new EventCollectionFormatter($events, EventCollectionFormatter::LIGHT);
 
         $form = $this->createForm(UserRegisterType::class);
