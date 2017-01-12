@@ -1,4 +1,9 @@
 app_index:
   path: /
   defaults: {_controller: "AppBundle:Default:index"}
+  methods: [GET]
+
+add_user:
+  path: /newuser
+  defaults: {_controller: "AppBundle:Default:newUser"}
   methods: [GET, POST]

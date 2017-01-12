@@ -9,6 +9,8 @@ use App\Application\UseCase\CreateUser\CreateUserHandler;
 use App\Domain\ValueObjects\DateTimeType;
 use App\Domain\ValueObjects\IntNumber;
 use App\Domain\ValueObjects\StringType;
+use App\UserInterface\AppBundle\DataMappers\UserDataMapper;
+use App\UserInterface\AppBundle\Entity\User;
 use App\UserInterface\AppBundle\Form\UserRegisterType;
 use App\UserInterface\AppBundle\Formatters\EventFormatters\EventCollectionFormatter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,47 +20,33 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $userRegistry = $this->get('userRegistry');
-        $userFactory = $this->get('userFactory');
-        $eventFactory = $this->get('eventFactory');
+        $userDataMapper = $this->get('userDataMapper');
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')
+            ->findAll();
 
-        $user = new CreateUserCommand(
-            new IntNumber(1),
-            new StringType('Jan'),
-            new StringType('Hryniuk'),
-            new IntNumber(33),
-            new StringType('jasiekhryniuk@gmail.com')
-        );
-
-
-        $handledUser = new CreateUserHandler($userFactory, $userRegistry);
-        $handledUser->handle($user);
-
-        $user = $userRegistry->findByEmail(new StringType('jasiekhryniuk@gmail.com'));
-        $event = new CreateEventCommand(
-            new IntNumber(1),
-            new StringType('Event title'),
-            new IntNumber($user->getId()),
-            new StringType('Event description'),
-            new DateTimeType(new \DateTime('-1 day')),
-            new DateTimeType(new \DateTime('+7 day'))
-        );
-
-        $handledEvent = new CreateEventHandler($userRegistry, $eventFactory);
-        $handledEvent->handle($event);
-
-        $events = $user->getEvents();
-        $formattedEvents = new EventCollectionFormatter($events, EventCollectionFormatter::LIGHT);
-
-        $form = $this->createForm(UserRegisterType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            var_dump($form->getData());
+        foreach ($users as $user) {
+            $userDataMapper->insertUserToRegistry($user);
         }
 
-        return $this->render('default/index.html.twig', [
-            'users' => $userRegistry,
-            'data' => $formattedEvents->getResult(),
+        return $this->render('default/index.html.twig', ['users' => $users, 'userRegistry' => $this->get('userRegistry')]);
+    }
+
+    public function newUserAction(Request $request)
+    {
+        $user = new User();
+        $form = $this->createForm(UserRegisterType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('app_index');
+        }
+
+        return $this->render('default/new_user.html.twig', [
             'form' => $form->createView()
         ]);
     }

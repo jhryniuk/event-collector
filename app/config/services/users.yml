@@ -6,3 +6,10 @@ services:
 
   userRegistry:
     class: App\Infrastructure\Domain\UserRegistry
+
+  userDataMapper:
+    class: App\UserInterface\AppBundle\DataMappers\UserDataMapper
+    arguments:
+      - "@userRegistry"
+      - "@userFactory"
+      - "@eventFactory"
