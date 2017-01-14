@@ -59,7 +59,7 @@ class Event
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -91,7 +91,7 @@ class Event
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -107,7 +107,7 @@ class Event
     /**
      * @return \DateTime
      */
-    public function getDateStart(): \DateTime
+    public function getDateStart()
     {
         return $this->date_start;
     }
@@ -123,7 +123,7 @@ class Event
     /**
      * @return \DateTime
      */
-    public function getDateEnd(): \DateTime
+    public function getDateEnd()
     {
         return $this->date_end;
     }

@@ -8,8 +8,14 @@ services:
     class: App\Infrastructure\Domain\UserRegistry
 
   userDataMapper:
-    class: App\UserInterface\AppBundle\DataMappers\UserDataMapper
+    class: App\UserInterface\AppBundle\Services\UserDataMapper
     arguments:
       - "@userRegistry"
       - "@userFactory"
       - "@eventFactory"
+
+  userRegistryGenerator:
+    class: App\UserInterface\AppBundle\Services\UserRegistryGenerator
+    arguments:
+      - "@doctrine.orm.entity_manager"
+      - "@userDataMapper"

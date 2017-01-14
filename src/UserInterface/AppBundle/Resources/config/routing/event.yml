@@ -1,0 +1,3 @@
+add_event:
+  path: /{userId}/add
+  defaults: {_controller: "AppBundle:Event:newEvent"}

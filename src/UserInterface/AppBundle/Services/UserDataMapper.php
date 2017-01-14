@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserInterface\AppBundle\DataMappers;
+namespace App\UserInterface\AppBundle\Services;
 
 use App\Application\Factory\EventFactory;
 use App\Application\Factory\UserFactory;
