@@ -32,7 +32,7 @@ class UserController extends Controller
             return $this->redirectToRoute('index_user');
         }
 
-        return $this->render('AppBundle:User:new_user.html.twig', [
+        return $this->render('AppBundle:User:new.html.twig', [
             'form' => $form->createView()
         ]);
     }

@@ -8,6 +8,7 @@
 /bin/phpspec
 /bin/security-checker
 /app/config/parameters.yml
+/app/bootstrap.php.cache
 !/bin/console
 /var/
 !var/.gitkeep
