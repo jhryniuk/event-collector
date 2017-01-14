@@ -3,12 +3,20 @@ app_index:
   defaults: {_controller: "AppBundle:Default:index"}
   methods: [GET]
 
-add_user:
-  path: /users/add
-  defaults: {_controller: "AppBundle:User:newUser"}
-  methods: [GET, POST]
-
 index_user:
   path: /users
   defaults: {_controller: "AppBundle:User:index"}
   methods: [GET]
+
+AppBundle_app_user:
+  resource: "@AppBundle/Resources/config/routing/user.yml"
+  prefix: /users
+
+index_event:
+  path: /events
+  defaults: {_controller: "AppBundle:Event:index"}
+  methods: [GET]
+
+AppBundle_app_event:
+  resource: "@AppBundle/Resources/config/routing/event.yml"
+  prefix: /events

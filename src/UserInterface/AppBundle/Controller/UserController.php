@@ -11,14 +11,7 @@ class UserController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $userDataMapper = $this->get('userDataMapper');
-        $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('AppBundle:User')
-            ->findAll();
-
-        foreach ($users as $user) {
-            $userDataMapper->insertUserToRegistry($user);
-        }
+        $this->get('userRegistryGenerator');
 
         return $this->render('AppBundle:User:index.html.twig', [
             'userRegistry' => $this->get('userRegistry')

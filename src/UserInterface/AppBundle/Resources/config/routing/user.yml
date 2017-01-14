@@ -1,0 +1,4 @@
+add_user:
+  path: /add
+  defaults: {_controller: "AppBundle:User:newUser"}
+  methods: [GET, POST]
