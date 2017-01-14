@@ -30,7 +30,7 @@ class EventController extends Controller
             return $this->redirectToRoute('index_event');
         }
 
-        return $this->render('AppBundle:Event:new_event.html.twig', [
+        return $this->render('AppBundle:Event:new.html.twig', [
             'form' => $form->createView()
         ]);
     }
