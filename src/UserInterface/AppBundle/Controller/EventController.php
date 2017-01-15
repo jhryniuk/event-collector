@@ -34,4 +34,10 @@ class EventController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    public function myEvents($userId)
+    {
+        $this->get('userRegistryGenerator');
+
+    }
 }

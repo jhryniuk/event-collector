@@ -36,4 +36,9 @@ class UserController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    public function loginAction()
+    {
+        return $this->render('AppBundle:User:login.html.twig');
+    }
 }
