@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="{{ asset('bundles/users/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/users/css/style.css') }}">
-    <script type="text/javascript" src="{{ asset('bundles/users/js/jquery-1.11.3.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}">
+    <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-1.11.3.min.js') }}"></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <title>{% block title %}Sedyko{% endblock %}</title>
@@ -16,18 +16,18 @@
     {% if app.user %}
         <nav class='navbar navbar-default container'>
             <ul class="nav navbar-nav">
-                <li><a href="{{ path('dashboard_homepage') }}">Dashboard</a></li>
-                <li><a href="{{ path('gallery_index') }}">Galeria</a></li>
-                <li><a href="{{ path('documents_index') }}">Dokumenty</a></li>
-                <li><a href="{{ path('settings_index') }}">Ustawienia</a></li>
-                <li><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li>
+                {#<li><a href="{{ path('dashboard_homepage') }}">Dashboard</a></li>#}
+                {#<li><a href="{{ path('gallery_index') }}">Galeria</a></li>#}
+                {#<li><a href="{{ path('documents_index') }}">Dokumenty</a></li>#}
+                {#<li><a href="{{ path('settings_index') }}">Ustawienia</a></li>#}
+                <li><a href="{{ path('logout') }}">Wyloguj</a></li>
             </ul>
         </nav>
     {% endif %}
     {% block body %}{% endblock %}
 </div>
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('bundles/users/js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/bootstrap.js') }}"></script>
 {% endblock %}
 </body>
 </html>

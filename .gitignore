@@ -12,3 +12,4 @@
 !/bin/console
 /var/
 !var/.gitkeep
+/public/bundles

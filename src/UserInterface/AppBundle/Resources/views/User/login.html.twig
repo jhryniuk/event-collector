@@ -1,6 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% block title%}
+    Zaloguj się.
+{% endblock %}
+
 {% block body %}
-    login
-    Hello
+    <div class="container">
+        {% if error %}
+            <div class="error">{{ error.message }}</div>
+        {% endif %}
+        <fieldset>
+            <h1 class="title">Zaloguj się</h1>
+            <form action="{{ path("check_login") }}" method="post" id="login">
+                <div>
+                    <label for="username">Login:</label>
+                    <input type="text" id="username" name="_username" autofocus/>
+                </div>
+                <div>
+                    <label for="password">Hasło:</label>
+                    <input type="password" id="password" name="_password" />
+                </div>
+                <button type="submit" class="btn btn-success">
+                    Zaloguj się.
+                </button>
+                <a href="{{ path('add_user') }}"class="btn btn-primary">Zarejestruj się.</a>
+            </form>
+            {# set code = code(_self) #}
+        </fieldset>
+    </div>
 {% endblock %}

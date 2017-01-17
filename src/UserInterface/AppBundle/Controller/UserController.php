@@ -26,6 +26,7 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user->setRole('ROLE_USER');
             $em->persist($user);
             $em->flush();
 
@@ -37,8 +38,25 @@ class UserController extends Controller
         ]);
     }
 
-    public function loginAction()
+
+    public function loginAction(Request $request)
     {
-        return $this->render('AppBundle:User:login.html.twig');
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('AppBundle:User:login.html.twig', ['error' => $error, 'lastUsername' => $lastUsername]);
+    }
+
+    public function checkAction()
+    {
+    }
+
+    public function logoutAction()
+    {
     }
 }
