@@ -6,6 +6,8 @@ use App\UserInterface\AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -41,6 +43,20 @@ class UserRegisterType extends AbstractType
                 'attr' => [
                     'title' => 'Nazwisko'
                 ]
+            ])
+            ->add('username', TextType::class, [
+                'label' => 'Login: ',
+                'required' => false,
+                'attr' => [
+                    'title' => 'Login'
+                ]
+            ])
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Popraw hasło.',
+                'required' => true,
+                'first_options' => ['label' => 'Hasło: '],
+                'second_options' => ['label' => 'Powtórz hasło: ']
             ])
             ->add('age', IntegerType::class, [
                 'label' => 'Wiek: ',
