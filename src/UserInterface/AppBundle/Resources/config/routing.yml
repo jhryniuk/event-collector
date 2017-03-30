@@ -15,24 +15,12 @@ logout:
   path: /logout
   defaults: {_controller: "AppBundle:User:logout"}
 
-index_user:
+open_index_user:
   path: /users
   defaults: {_controller: "AppBundle:User:index"}
   methods: [GET]
 
-index_dashboard:
-  path: /admin
-  defaults: {_controller: "AppBundle:Dashboard:index"}
-
-AppBundle_app_user:
-  resource: "@AppBundle/Resources/config/routing/user.yml"
-  prefix: /users
-
-index_event:
+open_index_event:
   path: /events
   defaults: {_controller: "AppBundle:Event:index"}
   methods: [GET]
-
-AppBundle_app_event:
-  resource: "@AppBundle/Resources/config/routing/event.yml"
-  prefix: /events

@@ -5,7 +5,10 @@
   "require-dev": {
     "phpspec/phpspec": "3.2.*",
     "squizlabs/php_codesniffer": "2.7.*",
-    "sensio/generator-bundle": "^3.0"
+    "sensio/generator-bundle": "^3.0",
+    "sebastian/phpcpd": "^3.0",
+    "phpmd/phpmd": "2.6.*",
+    "phpunit/phpunit": "6.0.*"
   },
   "require": {
     "ramsey/uuid": "3.5.*",
@@ -51,5 +54,8 @@
       "name": "Jan Hryniuk",
       "email": "jasiekhryniuk@gmail.com"
     }
-  ]
+  ],
+  "archive": {
+    "exclude": ["/var", "/vendor", "data", "/app/config/parameters.yml", ".idea"]
+  }
 }

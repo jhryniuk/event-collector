@@ -41,7 +41,8 @@ class CreateUserHandler implements CommandHandler, ResponderAware
         if (!($checkedUser instanceof User)) {
             $this->userRegistry->register($user);
             $this->userCreated($user);
-        } else {
+        }
+        if ($checkedUser instanceof User) {
             $this->userNotCreated($user);
         }
     }

@@ -18,10 +18,10 @@ fieldset
     border             : 1px solid #D0D5C0;
     border-radius      : 10px;
     margin             : auto;
-    padding            : 18px;
+    padding            : 20px;
     text-align         : center;
     width              : 275px;
-    height             : 275px;
+    height             : 300px;
     position           : absolute;
     top                : 0;
     bottom             : 0;
@@ -32,6 +32,10 @@ fieldset
 fieldset div
 {
 	margin     : auto;
+    &:last-of-type {
+        margin: 10px auto;
+        width: 225px;
+    }
 	text-align : left;
 	width      : 220px;
 }

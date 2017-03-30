@@ -11,7 +11,7 @@ security:
 
     providers:
         administrators:
-            entity: {class: AppBundle:User, property: username}
+            entity: {class: AppBundle:User}
 
     firewalls:
         main:
@@ -21,7 +21,7 @@ security:
             form_login:
                 check_path: check_login
                 login_path: login
-                default_target_path: admin
+                default_target_path: index_dashboard
             logout:
                 path: logout
                 target: app_index

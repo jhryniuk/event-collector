@@ -34,5 +34,6 @@ class DateTimeTypeSpec extends ObjectBehavior
     {
         $stringDate = $this->date->format('Y-m-d H:i:s');
         $this->equal($stringDate)->shouldReturn(true);
+//        $this->equal('1984-01-07 17:25:15')->shouldReturn(true);
     }
 }

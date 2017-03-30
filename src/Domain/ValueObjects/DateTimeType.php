@@ -23,6 +23,10 @@ class DateTimeType
     {
         $valueCheck = new \DateTime($value);
 
-        return $valueCheck == $this->value;
+        if (0 == $valueCheck->diff($this->value, true)->format('%Y%M%D%H%I%s')) {
+            return true;
+        }
+
+        return false;
     }
 }

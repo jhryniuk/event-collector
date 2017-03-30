@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         return $this->render('AppBundle:Default:index.html.twig');
     }

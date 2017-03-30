@@ -58,4 +58,9 @@ class UserRegistry implements \App\Domain\UserRegistry
 
         return $target;
     }
+
+    public function getContent()
+    {
+        return $this->registry;
+    }
 }

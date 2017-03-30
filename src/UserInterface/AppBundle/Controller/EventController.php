@@ -9,20 +9,20 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EventController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         return $this->render('AppBundle:Event:index.html.twig');
     }
 
-    public function newEventAction(Request $request, $userId)
+    public function newEventAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('AppBundle:User')->find($userId);
         $event = new Event();
         $form = $this->createForm(EventRegisterType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
             $event->setUser($user);
             $em->persist($event);
             $em->flush();
@@ -35,9 +35,10 @@ class EventController extends Controller
         ]);
     }
 
-    public function myEvents($userId)
+    public function myEventsAction()
     {
-        $this->get('userRegistryGenerator');
+        $my_events = $this->getUser()->getEvents();
 
+        return $this->render('AppBundle:Event:my_events.html.twig', ['my_events' => $my_events]);
     }
 }

@@ -9,16 +9,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $this->get('userRegistryGenerator');
 
         return $this->render('AppBundle:User:index.html.twig', [
-            'userRegistry' => $this->get('userRegistry')
+            'userRegistry' => $this->get('userRegistry')->getContent()
         ]);
     }
 
-    public function newUserAction(Request $request)
+    public function registerUserAction(Request $request)
     {
         $user = new User();
         $form = $this->createForm(UserRegisterType::class, $user);
@@ -42,11 +42,7 @@ class UserController extends Controller
     public function loginAction(Request $request)
     {
         $authenticationUtils = $this->get('security.authentication_utils');
-
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('AppBundle:User:login.html.twig', ['error' => $error, 'lastUsername' => $lastUsername]);

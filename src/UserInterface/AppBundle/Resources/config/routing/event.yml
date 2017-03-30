@@ -1,3 +1,8 @@
 add_event:
-  path: /{userId}/add
+  path: /add
   defaults: {_controller: "AppBundle:Event:newEvent"}
+  methods: [GET|POST]
+
+my_events:
+  path: /my
+  defaults: {_controller: "AppBundle:Event:myEvents"}

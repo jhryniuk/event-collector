@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title%}
+{% block title %}
     Zaloguj się.
 {% endblock %}
 
@@ -13,19 +13,20 @@
             <h1 class="title">Zaloguj się</h1>
             <form action="{{ path("check_login") }}" method="post" id="login">
                 <div>
-                    <label for="username">Login:</label>
-                    <input type="text" id="username" name="_username" autofocus/>
+                    <div><label for="username">Login/email:</label></div>
+                    <div><input type="text" id="username" name="_username" autofocus/></div>
                 </div>
                 <div>
-                    <label for="password">Hasło:</label>
-                    <input type="password" id="password" name="_password" />
+                    <div><label for="password">Hasło:</label></div>
+                    <div><input type="password" id="password" name="_password"/></div>
                 </div>
-                <button type="submit" class="btn btn-success">
-                    Zaloguj się.
-                </button>
-                <a href="{{ path('add_user') }}"class="btn btn-primary">Zarejestruj się.</a>
+                <div>
+                    <button type="submit" class="btn btn-success">
+                        Zaloguj się.
+                    </button>
+                    <a href="{{ path('register_user') }}" class="btn btn-primary">Zarejestruj się.</a>
+                </div>
             </form>
-            {# set code = code(_self) #}
         </fieldset>
     </div>
 {% endblock %}
